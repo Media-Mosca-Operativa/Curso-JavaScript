@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Navegador</title>
+
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
+
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+    }
+
+    #mapa {
+      width: 80vw;
+      height: 80vh;
+      max-width: 900px;
+      max-height: 600px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="mapa"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <script>
+    const mapa = L.map("mapa");
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: "© OpenStreetMap contributors"
+    }).addTo(mapa);
+
+    const lugares = [
+      { nombre: "Madrid", coords: [40.4168, -3.7038] },
+      { nombre: "Barcelona", coords: [41.3851, 2.1734] },
+      { nombre: "Valencia", coords: [39.4699, -0.3763] }
+    ];
+
+    const markers = [];
+
+    lugares.forEach(lugar => {
+      const marker = L.marker(lugar.coords)
+        .addTo(mapa)
+        .bindPopup(lugar.nombre);
+      markers.push(marker);
+    });
+
+    const group = new L.featureGroup(markers);
+    mapa.fitBounds(group.getBounds());
+
+  </script>
+
+</body>
+</html>

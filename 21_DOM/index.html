@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>DOM</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column; 
+      justify-content: center; 
+      align-items: center;     
+      height: 100vh;           
+      margin: 0;               
+      font-family: Arial, sans-serif;
+    }
+
+    #mensaje {
+      color: blue;
+      font-weight: bold;
+      margin-bottom: 20px; 
+    }
+
+    #cambiarBtn {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="titulo">Document Object Model</h1>
+  <p id="mensaje">Este es un mensaje original.</p>
+  <button id="cambiarBtn">JavaScript</button>
+
+  <script>
+    //Seleccionamos elementos del DOM
+    //const titulo = document.getElementById('titulo'); 
+    //const parrafos = document.getElementsByTagName('p'); 
+    //const boton = document.querySelector('button'); 
+
+    const titulo = document.getElementById('titulo');
+    const mensaje = document.getElementById('mensaje');
+    const boton = document.getElementById('cambiarBtn');
+
+    //Funcion que genera color aleatorio
+    function colorAleatorio() {
+      const letras = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letras[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+    //Evento click del botón
+    boton.addEventListener('click', () => {
+      mensaje.textContent = '¡Has hecho clic en el botón!';
+      mensaje.style.color = 'red';
+      document.body.style.backgroundColor = colorAleatorio();
+    });
+  </script>
+</body>
+</html>

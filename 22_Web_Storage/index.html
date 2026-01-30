@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Web Storage</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center; 
+      align-items: center;   
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+    }
+
+    .formulario {
+      background: white;
+      padding: 20px 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    input {
+      padding: 8px;
+      width: 90%;
+      margin-bottom: 10px;
+    }
+
+    button {
+      padding: 5px;
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="formulario">
+    <h2>Web Storage</h2>
+
+    <input type="text" id="nombre" placeholder="Escribe tu nombre">
+
+    <div>
+      <button onclick="guardarNombre()">Guardar</button>
+      <button onclick="mostrarNombre()">Mostrar</button>
+      <button onclick="borrarNombre()">Borrar</button>
+    </div>
+
+    <p id="resultado"></p>
+  </div>
+
+  <script>
+    function guardarNombre() {
+      const nombre = document.getElementById("nombre").value;
+      localStorage.setItem("nombre", nombre);
+      alert("Nombre guardado");
+    }
+
+    function mostrarNombre() {
+      const nombre = localStorage.getItem("nombre");
+      document.getElementById("resultado").textContent =
+        nombre ? "Nombre guardado: " + nombre : "No hay nombre guardado";
+    }
+
+    function borrarNombre() {
+      localStorage.removeItem("nombre");
+      document.getElementById("resultado").textContent = "";
+    }
+  </script>
+
+</body>
+</html>
